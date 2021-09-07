@@ -17,9 +17,9 @@ void mergesort(double arr[], int l, int r);
 
 void merge(double arr[], int l, int r) {
     int len = r - l + 1;
-    int m = (len + 1) / 2;  // find middle of unsorted tmp_arr
-    int i = 0;              // l-side placement counter
-    int j = m;              // r-side placement tracker
+    int m = (len + 1) / 2; // find middle of unsorted tmp_arr
+    int i = 0;             // l-side placement counter
+    int j = m;             // r-side placement tracker
 
     // temp array to hold unsorted result
     double tmp_arr[len];
@@ -67,33 +67,23 @@ void printarray(double arr[], int len) {
     }
 }
 
-bool testarray(double arr[], double sorted_arr[], int len) {
-    for (int i = 0; i < len; i++) {
-        if (arr[i] != sorted_arr[i]) {
+bool testarray(double arr[], int len) {
+    double n = arr[0];
+    for (int i = 1; i < len; i++) {
+        if (arr[i] < n) {
             return false;
         }
+        n = arr[i];
     }
     return true;
 }
 
 int main(void) {
     double my_arr[5] = {
-        [0] = 9.0,
-        [1] = 2.0,
-        [2] = 5.3,
-        [3] = 1.2,
-        [4] = 6.1,
-    };
-
-    double my_sorted_arr[5] = {
-        [0] = 1.2,
-        [1] = 2.0,
-        [2] = 5.3,
-        [3] = 6.1,
-        [4] = 9.0,
+        [0] = 9.0, [1] = 2.0, [2] = 5.3, [3] = 1.2, [4] = 6.1,
     };
 
     mergesort(my_arr, 0, 4);
-    printf("IS SORTED: %d\n", testarray(my_arr, my_sorted_arr, 5));
+    printf("IS SORTED: %d\n", testarray(my_arr, 5));
     return EXIT_SUCCESS;
 }
