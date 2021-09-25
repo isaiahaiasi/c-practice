@@ -48,7 +48,7 @@ void printarr(double arr[], int len) {
     }
 }
 
-bool testarray(double arr[], int len) {
+bool testsort(double arr[], int len) {
     double a = arr[0];
     for (int i = 1; i < len; i++) {
         if (a > arr[i]) {
@@ -66,8 +66,8 @@ int main(void) {
     // partition(arr, 0, 6);
     quicksort(arr, 0, 6);
     quicksort(arr2, 0, 2);
-    printf("test array 1: Sorted? - %d\n", testarray(arr, 7));
-    printf("test array 1: Sorted? - %d\n", testarray(arr2, 3));
+    printf("test array 1: Sorted? - %d\n", testsort(arr, 7));
+    printf("test array 1: Sorted? - %d\n", testsort(arr2, 3));
 
     return EXIT_SUCCESS;
 }

@@ -67,7 +67,7 @@ void printarray(double arr[], int len) {
     }
 }
 
-bool testarray(double arr[], int len) {
+bool testsort(double arr[], int len) {
     double n = arr[0];
     for (int i = 1; i < len; i++) {
         if (arr[i] < n) {
@@ -84,6 +84,6 @@ int main(void) {
     };
 
     mergesort(my_arr, 0, 4);
-    printf("IS SORTED: %d\n", testarray(my_arr, 5));
+    printf("IS SORTED: %d\n", testsort(my_arr, 5));
     return EXIT_SUCCESS;
 }
