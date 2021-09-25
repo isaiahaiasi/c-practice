@@ -2,6 +2,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 bool is_whitespace(char c) {
   return c == ' ' || c == '\t' || c == '\n';
@@ -17,7 +18,7 @@ int get_last_not_empty(int arr[], int arr_size) {
   return ne_i;
 }
 
-void fill_histogram(int hist[], int h_size, int fill_value) {
+void init_hist_arr(int hist[], int h_size, int fill_value) {
   for (int i = 0; i < h_size; ++i) {
     hist[i] = fill_value;
   }
@@ -39,22 +40,15 @@ void print_histogram(int hist[], int h_size) {
   }
 }
 
-int main() {
-  // index for each length. lengths above 30 grouped together
-  // just because I don't want to write a hashing algo in c
-  int hist_size = 30;
-  int hist[hist_size];
-  fill_histogram(hist, hist_size, 0);
-
+void populate_hist_arr(int hist[], int hist_size) {
   int ch;
   int wi = 0;
   while ((ch = getchar()) != EOF) {
     if (is_whitespace(ch)) {
       if (wi > 0) {
-        // push wi to histogram
-        if (wi > 30) {
-          // avoid overflow
-          wi = 30;
+        // push wi to histogram, avoiding overflow
+        if (wi > hist_size) {
+          wi = hist_size;
         }
         ++hist[wi - 1];
         wi = 0;
@@ -64,6 +58,17 @@ int main() {
       ++wi;
     }
   }
+}
 
+int main() {
+  // Word lengths > hist_size grouped together
+  // (I don't want to write a hashing algo in c)
+  int hist_size = 30;
+  int hist[hist_size];
+
+  init_hist_arr(hist, hist_size, 0);
+  populate_hist_arr(hist, hist_size);
   print_histogram(hist, hist_size);
+
+  return EXIT_SUCCESS;
 }
